@@ -69,10 +69,23 @@
 
     function handleUpdate() {
       console.log(this.value)
+
+      // dataset is an object that consists of all the made up data- attributes we're using
+      // here we are only using data-sizing so sizing is the only key in the object
+      const suffix = this.dataset.sizing || ''
+
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix)
+
     }
 
+    // whenever the input is changed it will run a function
     inputs.forEach((input) => {
       input.addEventListener('change', handleUpdate)
+    })
+
+    // whenever the mouse is moved on that input, function runs (makes it work nicer)
+    inputs.forEach((input) => {
+      input.addEventListener('mousemove', handleUpdate)
     })
 
   </script>
